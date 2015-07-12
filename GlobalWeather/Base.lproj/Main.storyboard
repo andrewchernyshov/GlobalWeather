@@ -339,6 +339,18 @@
                     </view>
                     <connections>
                         <outlet property="cityNameLabel" destination="qRD-NU-i9b" id="pFc-cU-Qe7"/>
+                        <outlet property="day1TemperatureLabel" destination="9Ga-Y1-XXh" id="IyR-2j-RO8"/>
+                        <outlet property="day1WeatherDiscriptionLabel" destination="QM1-dG-GUy" id="9Ar-9X-eVA"/>
+                        <outlet property="day1WeekDayLabel" destination="Hmj-Tc-od3" id="1Zk-o2-zFc"/>
+                        <outlet property="day1WindSpeedLabel" destination="xQt-tB-2Fx" id="gnO-7g-L72"/>
+                        <outlet property="day2TemperatureLabel" destination="0W4-iE-chL" id="jDb-8f-vu8"/>
+                        <outlet property="day2WeatherDiscriptionLabel" destination="roe-zs-stz" id="kcp-GY-RBK"/>
+                        <outlet property="day2WeekDayLabel" destination="PYz-DV-uQN" id="YSN-ha-J3b"/>
+                        <outlet property="day2WindSpeedLabel" destination="5wW-ob-l76" id="IKY-bn-3xM"/>
+                        <outlet property="day3TemperatureLabel" destination="MSX-g9-03O" id="zqQ-qE-4rg"/>
+                        <outlet property="day3WeatherDiscriptionLabel" destination="uwh-rp-B7A" id="L5t-tT-mL0"/>
+                        <outlet property="day3WeekDayLabel" destination="d4u-Kb-s0J" id="hu9-nt-2zv"/>
+                        <outlet property="day3WindSpeedLabel" destination="kSG-fW-0f5" id="gPt-bj-6WM"/>
                         <outlet property="dvcActivityIndicator" destination="RkN-V9-JVg" id="dx6-fr-ZWg"/>
                         <outlet property="humidityRateLabel" destination="08i-d8-lFO" id="uSb-Nl-8Yy"/>
                         <outlet property="regionLabel" destination="Feo-ML-lTX" id="UEE-L5-YJm"/>

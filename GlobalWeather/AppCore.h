@@ -16,6 +16,7 @@
 @interface AppCore : NSObject <DownloadManagerDelegate>
 
 @property (nonatomic, strong) ForecastObject *dayForecast;
+@property (nonatomic, strong) NSMutableArray *threeDaysForecast;
 
 + (AppCore *) sharedInstance;
 

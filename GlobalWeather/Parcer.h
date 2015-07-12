@@ -18,4 +18,6 @@
 
 - (ForecastObject *) parceDayForecast;
 
+- (NSMutableArray *) parceThreeDaysForecast;
+
 @end

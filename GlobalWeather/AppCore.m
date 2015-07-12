@@ -12,6 +12,8 @@
     NSMutableArray *cityListLibrary;
     Parcer *parcer;
     CityRequest *cityRequest;
+    NSString *lat;
+    NSString *lon;
 }
 
 @end
@@ -98,8 +100,8 @@
 {
     cityRequest = request;
     NSArray *devidedCoordinates = [request.coordinates componentsSeparatedByString:@" "];
-    NSString *lat = [devidedCoordinates objectAtIndex:1];
-    NSString *lon = [devidedCoordinates objectAtIndex:0];
+    lat = [devidedCoordinates objectAtIndex:1];
+    lon = [devidedCoordinates objectAtIndex:0];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&cnt=4&mode=json&APPID=7099e347b14e30461a20a65f60e11a89", lat, lon]];
     DownloadManager *downloadManager = [[DownloadManager alloc] initWithURL:url AndTask:@"dayForecast"];
     [downloadManager downloadData:self];
@@ -114,9 +116,21 @@
     [[self dayForecast] setCityName:[[self cityRequest] cityName]];
     [[self dayForecast] setRegion:[[self cityRequest] region]];
     [[self dayForecast] setCoordinates:[[self cityRequest] coordinates]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"forecast" object:self];
+    
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%@&lon=%@&cnt=4&mode=json&APPID=7099e347b14e30461a20a65f60e11a89", lat, lon]];
+    DownloadManager *downloadManager = [[DownloadManager alloc] initWithURL:url AndTask:@"threeDayForecast"];
+    [downloadManager downloadData:self];
 }
 
+
+- (void) downloadManagerFinishedDownloadingThreeDayForecastWithData:(NSData *)data
+{
+    [[self parcer] setData:data];
+    _threeDaysForecast = [[self parcer] parceThreeDaysForecast];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"forecast" object:self];
+    
+}
 
 
 @end

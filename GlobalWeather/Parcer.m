@@ -156,6 +156,128 @@
 }
 
 
+- (NSMutableArray *)parceThreeDaysForecast
+{
+    
+    int curDay;
+    int curDay1;
+    int curDay2;
+    
+    
+    
+    NSMutableArray *weekdayArray = [[NSMutableArray alloc] init];
+    NSMutableArray *windSpeedArray = [[NSMutableArray alloc] init];
+    NSMutableArray *tempData = [[NSMutableArray alloc] init];
+    NSMutableArray *discriptionArray = [[NSMutableArray alloc] init];
+    NSDictionary *allDataDictionary1 = [NSJSONSerialization JSONObjectWithData:_data options:0 error:nil];
+    
+    
+    
+    
+    NSArray *arrayOfList = [allDataDictionary1 objectForKey:@"list"];
+    for (NSDictionary *diction in arrayOfList) {
+        NSString *dayTime = [diction objectForKey:@"dt"];
+        NSNumber *windSpeed = [diction objectForKey:@"speed"];
+        
+        [weekdayArray addObject:dayTime];
+        [windSpeedArray addObject: windSpeed];
+        
+        
+        
+        NSDictionary *temp = [diction objectForKey:@"temp"];
+        NSString *currentTemp = [temp objectForKey:@"day"];
+        [tempData addObject:currentTemp];
+        
+        NSArray *arrayOfWeather = [diction objectForKey:@"weather"];
+        for (NSDictionary *diction2 in arrayOfWeather) {
+            NSString *weatherDiscr = [diction2 objectForKey:@"description"];
+            
+            [discriptionArray addObject:weatherDiscr];
+        }
+        
+    }
+    
+    
+    
+    
+    NSString *temp1 = [tempData objectAtIndex:1];
+    NSString *temp2 = [tempData objectAtIndex:2];
+    NSString *temp3 = [tempData objectAtIndex:3];
+    NSNumber *temp1Num = [NSNumber numberWithFloat:[temp1 floatValue]- 273];
+    NSNumber *temp2Num = [NSNumber numberWithFloat:[temp2 floatValue]- 273];
+    NSNumber *temp3Num = [NSNumber numberWithFloat:[temp3 floatValue]- 273];
+    
+    
+    
+    
+    [[self numberFormatter] setRoundingMode:NSNumberFormatterRoundHalfUp];
+    [[self numberFormatter] setNumberStyle:NSNumberFormatterDecimalStyle];
+    [[self numberFormatter] setMaximumFractionDigits:0];
+    
+    
+    NSString *temp1Final = [[self numberFormatter] stringFromNumber:temp1Num];
+    
+    NSString *temp2Final = [[self numberFormatter] stringFromNumber:temp2Num];
+    NSString *temp3Final = [[self numberFormatter] stringFromNumber:temp3Num];
+    
+    
+    
+    
+    NSString *day1WindSpeed = [[self numberFormatter] stringFromNumber:[windSpeedArray objectAtIndex:1]];
+    NSString *day2WindSpeed = [[self numberFormatter] stringFromNumber:[windSpeedArray objectAtIndex:2]];
+    NSString *day3WindSpeed = [[self numberFormatter] stringFromNumber:[windSpeedArray objectAtIndex:3]];
+    
+    NSString *day1 = [weekdayArray objectAtIndex:1];
+    curDay = [day1 intValue];
+    NSString *day2 = [weekdayArray objectAtIndex:2];
+    curDay1 = [day2 intValue];
+    NSString *day3 = [weekdayArray objectAtIndex:3];
+    curDay2 = [day3 intValue];
+    
+    
+    
+    NSString *weatherDiscrFinal = [discriptionArray objectAtIndex:1];
+    NSString *weatherDiscrFinal1 = [discriptionArray objectAtIndex:2];
+    NSString *weatherDiscrFinal2 = [discriptionArray objectAtIndex:3];
+    
+    [[self dateFormatter] setDateFormat:@"EEE"];
+    NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:curDay];
+    NSDate *currentDate1 = [NSDate dateWithTimeIntervalSince1970:curDay1];
+    NSDate *currentDate2 = [NSDate dateWithTimeIntervalSince1970:curDay2];
+    
+    NSString *weekdayFinal = [[self dateFormatter] stringFromDate:currentDate];
+    NSString *weekdayFinal1 = [[self dateFormatter] stringFromDate:currentDate1];
+    NSString *weekdayFinal2 = [[self dateFormatter] stringFromDate:currentDate2];
+    
+    
+    
+    NSArray *temperatureFinal = [[NSArray alloc] initWithObjects:temp1Final, temp2Final, temp3Final, nil];
+    NSArray *weekDayFinal = [[NSArray alloc] initWithObjects:weekdayFinal, weekdayFinal1, weekdayFinal2, nil];
+    NSArray *windSpeedFinal = [[NSArray alloc] initWithObjects:day1WindSpeed,day2WindSpeed, day3WindSpeed, nil];
+    NSArray *weatherDiscriptionFinal = [[NSArray alloc] initWithObjects:weatherDiscrFinal, weatherDiscrFinal1, weatherDiscrFinal2, nil];
+    
+        NSMutableArray *threeDaysForecastArray = [[NSMutableArray alloc] init];
+    
+    int i;
+    
+    for (i = 0; i<=2; i++) {
+        
+        ForecastObject *forecastObject = [[ForecastObject alloc] init];
+        [forecastObject setCurrentTemperature:[temperatureFinal objectAtIndex:i]];
+        [forecastObject setWeekDay:[weekDayFinal objectAtIndex:i]];
+        [forecastObject setWindSpeed:[windSpeedFinal objectAtIndex:i]];
+        [forecastObject setWeatherDiscription:[weatherDiscriptionFinal objectAtIndex:i]];
+        
+        [threeDaysForecastArray addObject:forecastObject];
+        
+    }
+    
+    
+    return threeDaysForecastArray;
+   
+}
+
+
 @end
 
 

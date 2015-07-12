@@ -35,6 +35,37 @@
     [sunsetTimeLabel setEnabled:YES];
     [windSpeedLabe setText:[[[AppCore sharedInstance] dayForecast] windSpeed]];
     [windSpeedLabe setEnabled:YES];
+    
+    
+    [day1WeekDayLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:0] weekDay]];
+    [day1WeekDayLabel setEnabled:YES];
+    [day1TemperatureLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:0] currentTemperature]];
+    [day1TemperatureLabel setEnabled:YES];
+    [day1WindSpeedLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:0] windSpeed]];
+    [day1WindSpeedLabel setEnabled:YES];
+    [day1WeatherDiscriptionLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:0] weatherDiscription]];
+    [day1WeatherDiscriptionLabel setEnabled:YES];
+    
+    [day2WeekDayLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:1] weekDay]];
+    [day2WeekDayLabel setEnabled:YES];
+    [day2TemperatureLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:1] currentTemperature]];
+    [day2TemperatureLabel setEnabled:YES];
+    [day2WindSpeedLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:1] windSpeed]];
+    [day2WindSpeedLabel setEnabled:YES];
+    [day2WeatherDiscriptionLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:1] weatherDiscription]];
+    [day2WeatherDiscriptionLabel setEnabled:YES];
+    
+    [day3WeekDayLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:2] weekDay]];
+    [day3WeekDayLabel setEnabled:YES];
+    [day3TemperatureLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:2] currentTemperature]];
+    [day3TemperatureLabel setEnabled:YES];
+    [day3WindSpeedLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:2] windSpeed]];
+    [day3WindSpeedLabel setEnabled:YES];
+    [day3WeatherDiscriptionLabel setText:[[[[AppCore sharedInstance] threeDaysForecast] objectAtIndex:2] weatherDiscription]];
+    [day3WeatherDiscriptionLabel setEnabled:YES];
+
+    
+    
     [dvcActivityIndicator stopAnimating];
 }
 
