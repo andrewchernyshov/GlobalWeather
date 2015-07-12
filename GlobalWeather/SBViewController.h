@@ -14,6 +14,7 @@
 {
     IBOutlet UISearchBar *mySearchBar;
     IBOutlet UITableView *myTableView;
+    IBOutlet UIActivityIndicatorView *sbvcActivityIndicator;
 }
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB6986921B52A45E008741B8 /* ForecastObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6986911B52A45E008741B8 /* ForecastObject.m */; };
 		EB805BEB1B50239A0006411C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805BEA1B50239A0006411C /* main.m */; };
 		EB805BEE1B50239A0006411C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805BED1B50239A0006411C /* AppDelegate.m */; };
 		EB805BF11B50239A0006411C /* GlobalWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB805BEF1B50239A0006411C /* GlobalWeather.xcdatamodeld */; };
@@ -18,6 +19,9 @@
 		EB805C161B5024140006411C /* SBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805C151B5024140006411C /* SBViewController.m */; };
 		EB805C1A1B5029A80006411C /* AppCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805C191B5029A80006411C /* AppCore.m */; };
 		EB805C1E1B5032E40006411C /* CityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805C1D1B5032E40006411C /* CityRequest.m */; };
+		EB805C211B50354F0006411C /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805C201B50354F0006411C /* DownloadManager.m */; };
+		EB805C241B50427E0006411C /* Parcer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805C231B50427E0006411C /* Parcer.m */; };
+		EB805C271B5123870006411C /* ForecastRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805C261B5123870006411C /* ForecastRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB6986901B52A45E008741B8 /* ForecastObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastObject.h; sourceTree = "<group>"; };
+		EB6986911B52A45E008741B8 /* ForecastObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastObject.m; sourceTree = "<group>"; };
 		EB805BE51B50239A0006411C /* GlobalWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB805BE91B50239A0006411C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB805BEA1B50239A0006411C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,6 +57,12 @@
 		EB805C191B5029A80006411C /* AppCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCore.m; sourceTree = "<group>"; };
 		EB805C1C1B5032E40006411C /* CityRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityRequest.h; sourceTree = "<group>"; };
 		EB805C1D1B5032E40006411C /* CityRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityRequest.m; sourceTree = "<group>"; };
+		EB805C1F1B50354F0006411C /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
+		EB805C201B50354F0006411C /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
+		EB805C221B50427E0006411C /* Parcer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parcer.h; sourceTree = "<group>"; };
+		EB805C231B50427E0006411C /* Parcer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parcer.m; sourceTree = "<group>"; };
+		EB805C251B5123870006411C /* ForecastRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastRequest.h; sourceTree = "<group>"; };
+		EB805C261B5123870006411C /* ForecastRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +159,16 @@
 			children = (
 				EB805C181B5029A80006411C /* AppCore.h */,
 				EB805C191B5029A80006411C /* AppCore.m */,
+				EB805C1F1B50354F0006411C /* DownloadManager.h */,
+				EB805C201B50354F0006411C /* DownloadManager.m */,
+				EB805C221B50427E0006411C /* Parcer.h */,
+				EB805C231B50427E0006411C /* Parcer.m */,
 				EB805C1C1B5032E40006411C /* CityRequest.h */,
 				EB805C1D1B5032E40006411C /* CityRequest.m */,
+				EB805C251B5123870006411C /* ForecastRequest.h */,
+				EB805C261B5123870006411C /* ForecastRequest.m */,
+				EB6986901B52A45E008741B8 /* ForecastObject.h */,
+				EB6986911B52A45E008741B8 /* ForecastObject.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -253,13 +273,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB805C271B5123870006411C /* ForecastRequest.m in Sources */,
 				EB805C1E1B5032E40006411C /* CityRequest.m in Sources */,
 				EB805C1A1B5029A80006411C /* AppCore.m in Sources */,
 				EB805BEE1B50239A0006411C /* AppDelegate.m in Sources */,
 				EB805BF11B50239A0006411C /* GlobalWeather.xcdatamodeld in Sources */,
 				EB805BEB1B50239A0006411C /* main.m in Sources */,
+				EB6986921B52A45E008741B8 /* ForecastObject.m in Sources */,
 				EB805C161B5024140006411C /* SBViewController.m in Sources */,
 				EB805C131B5024060006411C /* DisplayViewController.m in Sources */,
+				EB805C241B50427E0006411C /* Parcer.m in Sources */,
+				EB805C211B50354F0006411C /* DownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +478,7 @@
 				EB805C0D1B50239A0006411C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB805C0E1B50239A0006411C /* Build configuration list for PBXNativeTarget "GlobalWeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +487,7 @@
 				EB805C101B50239A0006411C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

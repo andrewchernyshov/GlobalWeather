@@ -8,11 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "CityRequest.h"
+#import "DownloadManager.h"
+#import "Parcer.h"
 
-@interface AppCore : NSObject 
+
+
+@interface AppCore : NSObject <DownloadManagerDelegate>
+
+@property (nonatomic, strong) ForecastObject *dayForecast;
 
 + (AppCore *) sharedInstance;
 
 - (NSMutableArray *) fetchCityList;
+
+- (void) getNewCityListWithRequest: (NSString *)request;
+
+- (void) getForecastWithRequest: (CityRequest *) request;
 
 @end

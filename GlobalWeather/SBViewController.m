@@ -9,20 +9,33 @@
 #import "SBViewController.h"
 
 @interface SBViewController ()
-
+{
+    CityRequest *userCityChoiseForForecast;
+}
 @end
 
 @implementation SBViewController
 
+
+
+- (void) receiveCityList: (NSNotification *) notification
+{
+    [myTableView reloadData];
+    [sbvcActivityIndicator stopAnimating];
+}
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"Cancel button is working");
+    
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    NSString *userCityRequest = mySearchBar.text;
+    [[AppCore sharedInstance] getNewCityListWithRequest:userCityRequest];
+    [sbvcActivityIndicator startAnimating];
     
 }
 
@@ -45,8 +58,12 @@
 }
 
 
-
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    userCityChoiseForForecast = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
+    [[AppCore sharedInstance] getForecastWithRequest:userCityChoiseForForecast];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 
@@ -54,6 +71,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCityList:) name:@"cityList" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
