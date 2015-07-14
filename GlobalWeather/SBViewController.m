@@ -36,6 +36,7 @@
     NSString *userCityRequest = mySearchBar.text;
     [[AppCore sharedInstance] getNewCityListWithRequest:userCityRequest];
     [sbvcActivityIndicator startAnimating];
+    [mySearchBar resignFirstResponder];
     
 }
 
@@ -62,6 +63,7 @@
 {
     userCityChoiseForForecast = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
     [[AppCore sharedInstance] getForecastWithRequest:userCityChoiseForForecast];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityList" object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
