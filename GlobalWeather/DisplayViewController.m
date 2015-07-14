@@ -14,6 +14,20 @@
 
 @implementation DisplayViewController
 
+- (void) swipeAction: (UISwipeGestureRecognizer *) sender
+{
+    if (sender.direction == UISwipeGestureRecognizerDirectionUp) {
+        [self addCity:nil];
+
+    }
+    
+    if (sender.direction == UISwipeGestureRecognizerDirectionDown) {
+        [[AppCore sharedInstance] updateCurrentForecast];
+        [dvcActivityIndicator startAnimating];
+    
+    }
+}
+
 
 - (void) forecastReceived: (NSNotification *) notification
 {
@@ -78,15 +92,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
 }
 
-- (IBAction)updateCurrentForecast:(UIBarButtonItem *)sender
-{
-    [[AppCore sharedInstance] updateCurrentForecast];
-    [dvcActivityIndicator startAnimating];
-}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
+    UISwipeGestureRecognizer *swipeUP = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    [swipeUP setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self.view addGestureRecognizer:swipeUP];
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.view addGestureRecognizer:swipeDown];
     
 }
 

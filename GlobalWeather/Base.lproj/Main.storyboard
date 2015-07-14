@@ -183,11 +183,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="glH-hV-5VH"/>
-                                    <barButtonItem style="plain" systemItem="refresh" id="TkG-U2-vjT">
-                                        <connections>
-                                            <action selector="updateCurrentForecast:" destination="vXZ-lx-hvc" id="Uj3-PR-5cH"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

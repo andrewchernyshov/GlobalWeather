@@ -43,7 +43,7 @@
 }
 
 - (IBAction)addCity:(id)sender;
-- (IBAction)updateCurrentForecast:(UIBarButtonItem *)sender;
+
 
 
 @end
