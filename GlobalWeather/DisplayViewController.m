@@ -78,6 +78,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
 }
 
+- (IBAction)updateCurrentForecast:(UIBarButtonItem *)sender
+{
+    [[AppCore sharedInstance] updateCurrentForecast];
+    [dvcActivityIndicator startAnimating];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

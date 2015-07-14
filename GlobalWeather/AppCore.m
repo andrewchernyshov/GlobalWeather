@@ -133,6 +133,12 @@
 }
 
 
+- (void) updateCurrentForecast
+{
+    [self getForecastWithRequest:cityRequest];
+}
+
+
 @end
 
 

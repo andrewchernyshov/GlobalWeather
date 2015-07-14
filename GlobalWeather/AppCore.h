@@ -26,4 +26,6 @@
 
 - (void) getForecastWithRequest: (CityRequest *) request;
 
+- (void) updateCurrentForecast;
+
 @end
