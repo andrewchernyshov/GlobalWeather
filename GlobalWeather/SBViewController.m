@@ -16,7 +16,12 @@
 
 @implementation SBViewController
 
-
+- (void) swipeAction: (UISwipeGestureRecognizer *) sender
+{
+    if (sender.direction == UISwipeGestureRecognizerDirectionDown) {
+        [self searchBarCancelButtonClicked:nil];
+    }
+}
 
 - (void) receiveCityList: (NSNotification *) notification
 {
@@ -75,6 +80,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCityList:) name:@"cityList" object:nil];
+    
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
+    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.view addGestureRecognizer:swipeDown];
+    
 }
 
 - (void)didReceiveMemoryWarning {
