@@ -44,6 +44,6 @@
 
 - (IBAction)addCity:(id)sender;
 
-
+- (IBAction)getForecastForCurrentLocation:(id)sender;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB5E09461B56D2AD008B6CA9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5E09451B56D2AD008B6CA9 /* CoreLocation.framework */; };
 		EB6986921B52A45E008741B8 /* ForecastObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6986911B52A45E008741B8 /* ForecastObject.m */; };
 		EB805BEB1B50239A0006411C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805BEA1B50239A0006411C /* main.m */; };
 		EB805BEE1B50239A0006411C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805BED1B50239A0006411C /* AppDelegate.m */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB5E09451B56D2AD008B6CA9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EB6986901B52A45E008741B8 /* ForecastObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastObject.h; sourceTree = "<group>"; };
 		EB6986911B52A45E008741B8 /* ForecastObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastObject.m; sourceTree = "<group>"; };
 		EB805BE51B50239A0006411C /* GlobalWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB5E09461B56D2AD008B6CA9 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +89,7 @@
 		EB805BDC1B50239A0006411C = {
 			isa = PBXGroup;
 			children = (
+				EB5E09451B56D2AD008B6CA9 /* CoreLocation.framework */,
 				EB805BE71B50239A0006411C /* GlobalWeather */,
 				EB805C041B50239A0006411C /* GlobalWeatherTests */,
 				EB805BE61B50239A0006411C /* Products */,
@@ -104,8 +108,6 @@
 		EB805BE71B50239A0006411C /* GlobalWeather */ = {
 			isa = PBXGroup;
 			children = (
-				EB805BEC1B50239A0006411C /* AppDelegate.h */,
-				EB805BED1B50239A0006411C /* AppDelegate.m */,
 				EB805C171B50241C0006411C /* Controller */,
 				EB805C1B1B5029AE0006411C /* Model */,
 				EB805BF51B50239A0006411C /* Main.storyboard */,
@@ -120,6 +122,8 @@
 		EB805BE81B50239A0006411C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EB805BEC1B50239A0006411C /* AppDelegate.h */,
+				EB805BED1B50239A0006411C /* AppDelegate.m */,
 				EB805BE91B50239A0006411C /* Info.plist */,
 				EB805BEA1B50239A0006411C /* main.m */,
 			);

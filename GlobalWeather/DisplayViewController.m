@@ -94,11 +94,15 @@
     SBViewController *sbvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SBViewController"];
     [self presentViewController:sbvc animated:YES completion:nil];
     [dvcActivityIndicator startAnimating];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
+    
 }
 
 
-
+- (IBAction)getForecastForCurrentLocation:(id)sender
+{
+    [[AppCore sharedInstance] getForecastForCurrentLocation];
+    [dvcActivityIndicator startAnimating];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -110,6 +114,7 @@
     [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipeDown];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChoiseCanceled:) name:@"cityChoiseCanceled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
     
 }
 

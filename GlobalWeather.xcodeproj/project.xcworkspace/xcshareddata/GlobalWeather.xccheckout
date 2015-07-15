@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8090EA20-DA44-40B0-A7BF-F43DD0A51FFA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GlobalWeather</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7AE5009530B088FB9C66F2FE95463D46CA63338F</key>
+		<string>https://github.com/andrewchernyshov/GlobalWeather.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GlobalWeather.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7AE5009530B088FB9C66F2FE95463D46CA63338F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/andrewchernyshov/GlobalWeather.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7AE5009530B088FB9C66F2FE95463D46CA63338F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7AE5009530B088FB9C66F2FE95463D46CA63338F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GlobalWeather</string>
+		</dict>
+	</array>
+</dict>
+</plist>

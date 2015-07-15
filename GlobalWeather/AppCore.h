@@ -10,7 +10,7 @@
 #import "CityRequest.h"
 #import "DownloadManager.h"
 #import "Parcer.h"
-
+#import <CoreLocation/CoreLocation.h>
 
 
 @interface AppCore : NSObject <DownloadManagerDelegate>
@@ -28,4 +28,5 @@
 
 - (void) updateCurrentForecast;
 
+- (void) getForecastForCurrentLocation;
 @end

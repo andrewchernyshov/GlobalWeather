@@ -47,6 +47,10 @@
             if ([_task isEqualToString:@"threeDayForecast"]) {
                 [delegate downloadManagerFinishedDownloadingThreeDayForecastWithData:data];
             }
+            
+            if ([_task isEqualToString:@"coordinates"]) {
+                [delegate downloadManagerFinishedDownloadingCityListViaCoordinatesWithData:data];
+            }
         });
     
     }];

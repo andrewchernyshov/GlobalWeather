@@ -183,6 +183,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="glH-hV-5VH"/>
+                                    <barButtonItem style="plain" systemItem="action" id="ozq-IH-RVP">
+                                        <connections>
+                                            <action selector="getForecastForCurrentLocation:" destination="vXZ-lx-hvc" id="1ID-8l-Dvn"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -514,7 +519,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Xt-vv-fhm">
+                            <searchBar contentMode="redraw" placeholder="Enter city name" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Xt-vv-fhm">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>

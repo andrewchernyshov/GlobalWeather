@@ -7,13 +7,15 @@
 //
 
 #import "AppCore.h"
-@interface AppCore ()
+#import <CoreLocation/CoreLocation.h>
+@interface AppCore () <CLLocationManagerDelegate>
 {
     NSMutableArray *cityListLibrary;
     Parcer *parcer;
     CityRequest *cityRequest;
     NSString *lat;
     NSString *lon;
+    CLLocationManager *locationManager;
 }
 
 @end
@@ -35,6 +37,15 @@
     });
     
     return _sharedInstance;
+}
+
+- (CLLocationManager *) locationManager
+{
+    if (!locationManager) {
+        locationManager = [[CLLocationManager alloc] init];
+    }
+    
+    return locationManager;
 }
 
 - (CityRequest *)cityRequest
@@ -74,6 +85,44 @@
 {
     
     return [self cityListLibrary];
+}
+
+
+- (void) getForecastForCurrentLocation
+{
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    
+    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+}
+
+
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Location manager has encountered error: %@", error);
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *currentLocation = [locations lastObject];
+    lat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+    lon = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+    [self.locationManager stopUpdatingLocation];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://geocode-maps.yandex.ru/1.x/?format=json&geocode=%@,%@", lon, lat]];
+    DownloadManager *downloadManager = [[DownloadManager alloc] initWithURL:url AndTask:@"coordinates"];
+    [downloadManager downloadData:self];
+    
+}
+
+- (void) downloadManagerFinishedDownloadingCityListViaCoordinatesWithData:(NSData *)data
+{
+    [[self parcer] setData:data];
+    cityListLibrary = [[self parcer] parceCityList];
+    CityRequest *request = [cityListLibrary objectAtIndex:0];
+    [self getForecastWithRequest:request];
 }
 
 
@@ -137,6 +186,9 @@
 {
     [self getForecastWithRequest:cityRequest];
 }
+
+
+
 
 
 @end

@@ -13,6 +13,7 @@
 - (void) downloadManagerFinishedDownloadingCityListWithData: (NSData *)data;
 - (void) downloadManagerFinishedDownloadingDayForecastWithData:(NSData *)data;
 - (void) downloadManagerFinishedDownloadingThreeDayForecastWithData:(NSData *)data;
+- (void) downloadManagerFinishedDownloadingCityListViaCoordinatesWithData:(NSData *)data;
 
 @end
 
