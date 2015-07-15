@@ -29,6 +29,11 @@
 }
 
 
+- (void) cityChoiseCanceled: (NSNotification *) notification
+{
+    [dvcActivityIndicator stopAnimating];
+}
+
 - (void) forecastReceived: (NSNotification *) notification
 {
     [cityNameLabel setText:[[[AppCore sharedInstance] dayForecast] cityName]];
@@ -104,6 +109,7 @@
     UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
     [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipeDown];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChoiseCanceled:) name:@"cityChoiseCanceled" object:nil];
     
 }
 

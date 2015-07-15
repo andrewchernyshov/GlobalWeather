@@ -27,6 +27,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cityChoiseCanceled" object:self];
     
 }
 
