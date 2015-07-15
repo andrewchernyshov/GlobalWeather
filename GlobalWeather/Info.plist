@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Gweather asks your permission to get permanent access to GPS data.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>GWeather asks your permission to get access to GPS data.</string>
 	<key>CFBundleExecutable</key>
