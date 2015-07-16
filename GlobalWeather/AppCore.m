@@ -8,6 +8,7 @@
 
 #import "AppCore.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Reachability.h"
 @interface AppCore () <CLLocationManagerDelegate>
 {
     NSMutableArray *cityListLibrary;
@@ -187,6 +188,24 @@
 }
 
 
+- (BOOL) checkConnection: (id<AppCoreDelegate>) delegate
+{
+    Reachability *reachabilityYandex = [Reachability reachabilityWithHostName:@"www.yandex.ru"];
+    Reachability *reachabilityOpenWeather = [Reachability reachabilityWithHostName:@"www.openweathermap.org"];
+    NetworkStatus currentNetworkStatusForYandex = [reachabilityYandex currentReachabilityStatus];
+    NetworkStatus currentNetworkStatusForOpenWeather = [reachabilityOpenWeather currentReachabilityStatus];
+    
+    
+    
+    if (currentNetworkStatusForYandex == NotReachable || currentNetworkStatusForOpenWeather == NotReachable) {
+        
+        [delegate internetConnectionIsUnAvailable];
+        
+    };
+   
+    
+    return YES;
+}
 
 
 

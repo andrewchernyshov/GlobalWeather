@@ -8,11 +8,17 @@
 
 #import "DisplayViewController.h"
 
-@interface DisplayViewController ()
+@interface DisplayViewController () <AppCoreDelegate>
 
 @end
 
 @implementation DisplayViewController
+
+- (void) internetConnectionIsUnAvailable
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Inernet access problem" message:@"Internet connection is unavailable right now." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
+}
 
 - (void) swipeAction: (UISwipeGestureRecognizer *) sender
 {
@@ -91,6 +97,7 @@
 
 - (IBAction)addCity:(id)sender
 {
+    [[AppCore sharedInstance] checkConnection:self];
     SBViewController *sbvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SBViewController"];
     [self presentViewController:sbvc animated:YES completion:nil];
     [dvcActivityIndicator startAnimating];
@@ -107,6 +114,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    [[AppCore sharedInstance] checkConnection:self];
+    
     UISwipeGestureRecognizer *swipeUP = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
     [swipeUP setDirection:UISwipeGestureRecognizerDirectionUp];
     [self.view addGestureRecognizer:swipeUP];
@@ -115,6 +124,9 @@
     [self.view addGestureRecognizer:swipeDown];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChoiseCanceled:) name:@"cityChoiseCanceled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
+    
+    
+    
     [self getForecastForCurrentLocation:nil];
 }
 

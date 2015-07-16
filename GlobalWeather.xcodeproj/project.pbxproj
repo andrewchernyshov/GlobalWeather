@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB51E0361B5842CB00B8204B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51E0351B5842CB00B8204B /* Reachability.m */; };
+		EB51E0381B58433800B8204B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB51E0371B58433800B8204B /* SystemConfiguration.framework */; };
 		EB5E09461B56D2AD008B6CA9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5E09451B56D2AD008B6CA9 /* CoreLocation.framework */; };
 		EB6986921B52A45E008741B8 /* ForecastObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6986911B52A45E008741B8 /* ForecastObject.m */; };
 		EB805BEB1B50239A0006411C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB805BEA1B50239A0006411C /* main.m */; };
@@ -36,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB51E0341B5842CB00B8204B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		EB51E0351B5842CB00B8204B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		EB51E0371B58433800B8204B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EB5E09451B56D2AD008B6CA9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EB6986901B52A45E008741B8 /* ForecastObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastObject.h; sourceTree = "<group>"; };
 		EB6986911B52A45E008741B8 /* ForecastObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastObject.m; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB51E0381B58433800B8204B /* SystemConfiguration.framework in Frameworks */,
 				EB5E09461B56D2AD008B6CA9 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +95,7 @@
 		EB805BDC1B50239A0006411C = {
 			isa = PBXGroup;
 			children = (
+				EB51E0371B58433800B8204B /* SystemConfiguration.framework */,
 				EB5E09451B56D2AD008B6CA9 /* CoreLocation.framework */,
 				EB805BE71B50239A0006411C /* GlobalWeather */,
 				EB805C041B50239A0006411C /* GlobalWeatherTests */,
@@ -126,6 +133,8 @@
 				EB805BED1B50239A0006411C /* AppDelegate.m */,
 				EB805BE91B50239A0006411C /* Info.plist */,
 				EB805BEA1B50239A0006411C /* main.m */,
+				EB51E0341B5842CB00B8204B /* Reachability.h */,
+				EB51E0351B5842CB00B8204B /* Reachability.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -287,6 +296,7 @@
 				EB805C161B5024140006411C /* SBViewController.m in Sources */,
 				EB805C131B5024060006411C /* DisplayViewController.m in Sources */,
 				EB805C241B50427E0006411C /* Parcer.m in Sources */,
+				EB51E0361B5842CB00B8204B /* Reachability.m in Sources */,
 				EB805C211B50354F0006411C /* DownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

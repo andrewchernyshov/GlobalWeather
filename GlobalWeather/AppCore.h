@@ -11,12 +11,18 @@
 #import "DownloadManager.h"
 #import "Parcer.h"
 #import <CoreLocation/CoreLocation.h>
+@protocol AppCoreDelegate
+@optional
 
+- (void) internetConnectionIsUnAvailable;
+
+@end
 
 @interface AppCore : NSObject <DownloadManagerDelegate>
 
 @property (nonatomic, strong) ForecastObject *dayForecast;
 @property (nonatomic, strong) NSMutableArray *threeDaysForecast;
+@property (nonatomic, weak) id<AppCoreDelegate>delegate;
 
 + (AppCore *) sharedInstance;
 
@@ -28,5 +34,9 @@
 
 - (void) updateCurrentForecast;
 
+- (BOOL) checkConnection:(id<AppCoreDelegate>)delegate;
+
 - (void) getForecastForCurrentLocation;
+
+
 @end
