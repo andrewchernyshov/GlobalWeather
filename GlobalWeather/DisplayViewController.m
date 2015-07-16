@@ -115,7 +115,7 @@
     [self.view addGestureRecognizer:swipeDown];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChoiseCanceled:) name:@"cityChoiseCanceled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
-    
+    [self getForecastForCurrentLocation:nil];
 }
 
 - (void)didReceiveMemoryWarning {
