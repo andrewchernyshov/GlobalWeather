@@ -12,6 +12,9 @@
 @interface AppCore () <CLLocationManagerDelegate>
 {
     NSMutableArray *cityListLibrary;
+    NSMutableDictionary *favouritesDictionary;
+   
+    NSArray *favouriteCityListLibrary;
     Parcer *parcer;
     CityRequest *cityRequest;
     NSString *lat;
@@ -25,7 +28,26 @@
 
 @implementation AppCore
 
+- (NSMutableDictionary *)favouritesDictionary
+{
+    if (!favouritesDictionary) {
+        favouritesDictionary = [[NSMutableDictionary alloc] init];
+    }
+    return favouritesDictionary;
+}
 
+
+
+- (NSArray *)favouriteCityListLibrary
+{
+    
+    if (!favouriteCityListLibrary) {
+        favouriteCityListLibrary = [[NSMutableArray alloc] init];
+        
+    }
+    return favouriteCityListLibrary;
+
+}
 
 + (AppCore *) sharedInstance
 {
@@ -39,6 +61,39 @@
     
     return _sharedInstance;
 }
+
+- (NSString *)getHeaderForSection:(NSInteger)section
+{
+    NSString *firstSectionHeader = @" ";
+    NSString *secondSectionHeader = @"Favourite cities list";
+    NSString *actualHeader;
+    
+    if (section == 0) {
+        actualHeader = firstSectionHeader;
+    } else {
+        actualHeader = secondSectionHeader;
+    }
+    return actualHeader;
+}
+
+
+
+- (void) saveUserCityRequest:(CityRequest *)request
+{
+    if (![favouritesDictionary objectForKey:request.cityName]) {
+        [self.favouritesDictionary setObject:request forKey:request.cityName];
+    }
+}
+
+
+- (NSArray *)fetchFavouriteCityList
+{
+    NSArray *array = 0;
+    array = [self.favouritesDictionary allValues];
+    return array;
+
+}
+
 
 - (CLLocationManager *) locationManager
 {

@@ -47,10 +47,27 @@
     
 }
 
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *header = [[AppCore sharedInstance] getHeaderForSection:section];
+    return header;
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    
+
     return [[[AppCore sharedInstance] fetchCityList] count];
-}
+    
+    }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 
@@ -59,9 +76,15 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     }
-    CityRequest *currentCityRequest = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
-    cell.textLabel.text = currentCityRequest.cityName;
-    cell.detailTextLabel.text = currentCityRequest.region;
+    
+        CityRequest *currentCityRequest = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
+        cell.textLabel.text = currentCityRequest.cityName;
+        cell.detailTextLabel.text = currentCityRequest.region;
+  
+        
+    
+    
+    
     return cell;
 }
 
@@ -71,6 +94,7 @@
     userCityChoiseForForecast = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
     [[AppCore sharedInstance] getForecastWithRequest:userCityChoiseForForecast];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityList" object:nil];
+    [[AppCore sharedInstance] saveUserCityRequest:userCityChoiseForForecast];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -85,6 +109,7 @@
     UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
     [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipeDown];
+    
     
 }
 

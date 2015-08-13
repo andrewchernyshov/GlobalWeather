@@ -16,6 +16,7 @@
 
 - (void) internetConnectionIsUnAvailable;
 
+
 @end
 
 @interface AppCore : NSObject <DownloadManagerDelegate>
@@ -28,6 +29,10 @@
 
 - (NSMutableArray *) fetchCityList;
 
+- (NSString *)getHeaderForSection: (NSInteger) section;
+
+- (NSMutableArray *) fetchFavouriteCityList;
+
 - (void) getNewCityListWithRequest: (NSString *)request;
 
 - (void) getForecastWithRequest: (CityRequest *) request;
@@ -38,5 +43,6 @@
 
 - (void) getForecastForCurrentLocation;
 
+- (void) saveUserCityRequest: (CityRequest *) request;
 
 @end

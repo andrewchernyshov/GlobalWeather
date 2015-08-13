@@ -12,4 +12,6 @@
 
 @synthesize cityName, region, coordinates;
 
+
+
 @end

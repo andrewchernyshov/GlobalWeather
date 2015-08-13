@@ -46,4 +46,11 @@
 
 - (IBAction)getForecastForCurrentLocation:(id)sender;
 
+- (IBAction)showFavourites:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIView *favouritesView;
+@property (weak, nonatomic) IBOutlet UITableView *favouritesTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *favouritesViewHight;
+
+
 @end

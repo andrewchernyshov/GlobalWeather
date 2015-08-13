@@ -8,7 +8,8 @@
 
 #import "DisplayViewController.h"
 
-@interface DisplayViewController () <AppCoreDelegate>
+@interface DisplayViewController () <AppCoreDelegate, UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *favouritesHeightConstaint;
 
 @end
 
@@ -111,6 +112,49 @@
     [dvcActivityIndicator startAnimating];
 }
 
+- (IBAction)showFavourites:(id)sender {
+    
+    [self.favouritesTableView reloadData];
+    [self.favouritesView canBecomeFirstResponder];
+    
+    
+    if (self.favouritesView.alpha == 0) {
+        //self.favouritesViewHight.constant = 200;
+        self.favouritesTableView.center = CGPointMake(CGRectGetWidth(self.favouritesView.frame)/2, 80);
+        self.favouritesView.center = CGPointMake(CGRectGetWidth(self.view.bounds)/2, 130);
+
+        
+        [UIView animateWithDuration:0.5f animations:^{
+            [self.favouritesView setAlpha:1.0f];
+            
+            self.favouritesTableView.center = CGPointMake(CGRectGetWidth(self.favouritesView.frame)/2, 100);
+             self.favouritesView.center = CGPointMake(CGRectGetWidth(self.view.bounds)/2, 172);
+
+            
+        }];
+
+    } else {
+        
+        
+        [self.view canBecomeFirstResponder];
+        [UIView animateWithDuration:0.5f animations:^{
+            [self.favouritesView setAlpha:0.0f];
+            
+            self.favouritesTableView.center = CGPointMake(CGRectGetWidth(self.favouritesView.frame)/2, 80);
+             self.favouritesView.center = CGPointMake(CGRectGetWidth(self.view.bounds)/2, 130);
+            //self.favouritesViewHight.constant = 5;
+
+        }];
+        
+    }
+    
+    
+    
+    NSLog(@"Favourite");
+    
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
@@ -124,25 +168,52 @@
     [self.view addGestureRecognizer:swipeDown];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChoiseCanceled:) name:@"cityChoiseCanceled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
-    
-    
-    
     [self getForecastForCurrentLocation:nil];
-}
+    self.favouritesView.alpha = 0.0f;
+    self.favouritesViewHight.constant = 210;
+   
+   }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
-*/
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    
+    return @"List of favourite locations";
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return [[[AppCore sharedInstance] fetchFavouriteCityList] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    UITableViewCell *cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FavouritesCell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"FavouritesCell"];
+    }
+    
+        CityRequest *currentCityRequest = [[[AppCore sharedInstance] fetchFavouriteCityList] objectAtIndex:indexPath.row];
+        cell.textLabel.text = currentCityRequest.cityName;
+        cell.detailTextLabel.text = currentCityRequest.region;
+        
+
+    
+    
+    return cell;
+}
+
 
 @end
