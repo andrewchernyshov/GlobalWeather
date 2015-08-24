@@ -14,10 +14,14 @@
 
 @implementation DisplayViewController
 
-- (void) internetConnectionIsUnAvailable
+- (void) internetConnectionIsUnAvailable: (NSNotification *) notification
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Inernet access problem" message:@"Internet connection is unavailable right now." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-    [alert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Internet" message:@"Cell signal is tow low or Internet connection is unavailable. Please, check your settings and try once again" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:alertButton];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void) swipeAction: (UISwipeGestureRecognizer *) sender
@@ -97,7 +101,6 @@
 
 - (IBAction)addCity:(id)sender
 {
-    [[AppCore sharedInstance] checkConnection:self];
     SBViewController *sbvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SBViewController"];
     [self presentViewController:sbvc animated:YES completion:nil];
     [dvcActivityIndicator startAnimating];
@@ -114,7 +117,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    [[AppCore sharedInstance] checkConnection:self];
     
     UISwipeGestureRecognizer *swipeUP = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
     [swipeUP setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -124,6 +126,7 @@
     [self.view addGestureRecognizer:swipeDown];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChoiseCanceled:) name:@"cityChoiseCanceled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forecastReceived:) name:@"forecast" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(internetConnectionIsUnAvailable:) name:@"No Internet" object:nil];
     
     
     

@@ -9,12 +9,16 @@
 #import "SBViewController.h"
 
 @interface SBViewController ()
-{
-    CityRequest *userCityChoiseForForecast;
-}
+
+@property (nonatomic, strong) CityRequest *userCityChoiseForForecast;
+
+
 @end
 
 @implementation SBViewController
+
+
+
 
 - (void) swipeAction: (UISwipeGestureRecognizer *) sender
 {
@@ -68,8 +72,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    userCityChoiseForForecast = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
-    [[AppCore sharedInstance] getForecastWithRequest:userCityChoiseForForecast];
+    self.userCityChoiseForForecast = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
+    [[AppCore sharedInstance] getForecastWithRequest:self.userCityChoiseForForecast];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityList" object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -85,6 +89,7 @@
     UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAction:)];
     [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipeDown];
+    
     
 }
 

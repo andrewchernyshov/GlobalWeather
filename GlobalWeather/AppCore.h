@@ -34,7 +34,7 @@
 
 - (void) updateCurrentForecast;
 
-- (BOOL) checkConnection:(id<AppCoreDelegate>)delegate;
+
 
 - (void) getForecastForCurrentLocation;
 

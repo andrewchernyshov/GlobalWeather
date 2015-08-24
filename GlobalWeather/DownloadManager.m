@@ -7,6 +7,7 @@
 //
 
 #import "DownloadManager.h"
+#import "Reachability.h"
 @interface DownloadManager ()
 {
     NSURL *_url;
@@ -31,32 +32,48 @@
 - (void)downloadData:(id<DownloadManagerDelegate>)delegate
 {
    
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionTask *task = [session dataTaskWithURL:_url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    
+    
+    Reachability *reachabilityYandex = [Reachability reachabilityWithHostName:@"www.yandex.ru"];
+    Reachability *reachabilityOpenWeather = [Reachability reachabilityWithHostName:@"www.openweathermap.org"];
+    NetworkStatus currentNetworkStatusForYandex = [reachabilityYandex currentReachabilityStatus];
+    NetworkStatus currentNetworkStatusForOpenWeather = [reachabilityOpenWeather currentReachabilityStatus];
+    
+    
+    
+    if (currentNetworkStatusForYandex == NotReachable || currentNetworkStatusForOpenWeather == NotReachable) {
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"No Internet" object:self];
+        
+    } else {
+        
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionTask *task = [session dataTaskWithURL:_url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
-            if ([_task isEqualToString:@"cityList"]) {
-                [delegate downloadManagerFinishedDownloadingCityListWithData:data];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if ([_task isEqualToString:@"cityList"]) {
+                    [delegate downloadManagerFinishedDownloadingCityListWithData:data];
+                }
+                
+                if ([_task isEqualToString:@"dayForecast"]) {
+                    [delegate downloadManagerFinishedDownloadingDayForecastWithData:data];
+                }
+                
+                if ([_task isEqualToString:@"threeDayForecast"]) {
+                    [delegate downloadManagerFinishedDownloadingThreeDayForecastWithData:data];
+                }
+                
+                if ([_task isEqualToString:@"coordinates"]) {
+                    [delegate downloadManagerFinishedDownloadingCityListViaCoordinatesWithData:data];
+                }
+            });
             
-            if ([_task isEqualToString:@"dayForecast"]) {
-                [delegate downloadManagerFinishedDownloadingDayForecastWithData:data];
-            }
-            
-            if ([_task isEqualToString:@"threeDayForecast"]) {
-                [delegate downloadManagerFinishedDownloadingThreeDayForecastWithData:data];
-            }
-            
-            if ([_task isEqualToString:@"coordinates"]) {
-                [delegate downloadManagerFinishedDownloadingCityListViaCoordinatesWithData:data];
-            }
-        });
-    
-    }];
-    
-    [task resume];
-    
+        }];
+        
+        [task resume];
+    }
 
 }
 @end

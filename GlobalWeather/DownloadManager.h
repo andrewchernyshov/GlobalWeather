@@ -15,11 +15,12 @@
 - (void) downloadManagerFinishedDownloadingThreeDayForecastWithData:(NSData *)data;
 - (void) downloadManagerFinishedDownloadingCityListViaCoordinatesWithData:(NSData *)data;
 
+
 @end
 
 @interface DownloadManager : NSObject
 
-@property (nonatomic, weak) id<DownloadManagerDelegate>delegate;
+@property (nonatomic, weak) id<DownloadManagerDelegate> delegate;
 
 - (void)downloadData: (id<DownloadManagerDelegate>) delegate;
 
