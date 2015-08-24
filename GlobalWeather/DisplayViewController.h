@@ -10,7 +10,8 @@
 #import "SBViewController.h"
 #import "AppCore.h"
 
-@interface DisplayViewController : UIViewController
+
+@interface DisplayViewController : UIViewController <SBViewControllerDelegate>
 
 {
     IBOutlet UIActivityIndicatorView *dvcActivityIndicator;
@@ -45,5 +46,7 @@
 - (IBAction)addCity:(id)sender;
 
 - (IBAction)getForecastForCurrentLocation:(id)sender;
+
+@property (nonatomic) id<UIViewControllerTransitioningDelegate> transitioningDelegate;
 
 @end

@@ -10,14 +10,14 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface AppCore () <CLLocationManagerDelegate>
-{
-    NSMutableArray *cityListLibrary;
-    Parcer *parcer;
-    CityRequest *cityRequest;
-    NSString *lat;
-    NSString *lon;
-    CLLocationManager *locationManager;
-}
+
+@property (nonatomic, strong) NSMutableArray *cityListLibrary;
+@property (nonatomic, strong) Parcer *parcer;
+@property (nonatomic, strong) CityRequest *cityRequest;
+@property (nonatomic, strong) NSString *lat;
+@property (nonatomic, strong) NSString *lon;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
 
 @end
 
@@ -42,19 +42,19 @@
 
 - (CLLocationManager *) locationManager
 {
-    if (!locationManager) {
-        locationManager = [[CLLocationManager alloc] init];
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
     }
     
-    return locationManager;
+    return _locationManager;
 }
 
 - (CityRequest *)cityRequest
 {
-    if (!cityRequest) {
-        cityRequest = [[CityRequest alloc] init];
+    if (!_cityRequest) {
+        _cityRequest = [[CityRequest alloc] init];
     }
-    return cityRequest;
+    return _cityRequest;
 }
 
 - (ForecastObject *)dayForecast
@@ -67,24 +67,24 @@
 
 - (Parcer *) parcer
 {
-    if (!parcer) {
-        parcer = [[Parcer alloc] init];
+    if (!_parcer) {
+        _parcer = [[Parcer alloc] init];
     }
     
-    return parcer;
+    return _parcer;
 }
 
 - (NSMutableArray *)cityListLibrary
 {
-    if (!cityListLibrary) {
-        cityListLibrary = [[NSMutableArray alloc] init];
+    if (!_cityListLibrary) {
+        _cityListLibrary = [[NSMutableArray alloc] init];
     }
-    return cityListLibrary;
+    return _cityListLibrary;
 }
 
 - (NSMutableArray *) fetchCityList
 {
-    
+    NSLog(@"City List Count = %lu", (unsigned long)[self.cityListLibrary count]);
     return [self cityListLibrary];
 }
 
@@ -108,10 +108,10 @@
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *currentLocation = [locations lastObject];
-    lat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-    lon = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+    self.lat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+    self.lon = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
     [self.locationManager stopUpdatingLocation];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://geocode-maps.yandex.ru/1.x/?format=json&geocode=%@,%@", lon, lat]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://geocode-maps.yandex.ru/1.x/?format=json&geocode=%@,%@", self.lon, self.lat]];
     DownloadManager *downloadManager = [[DownloadManager alloc] initWithURL:url AndTask:@"coordinates"];
     [downloadManager downloadData:self];
     
@@ -120,8 +120,8 @@
 - (void) downloadManagerFinishedDownloadingCityListViaCoordinatesWithData:(NSData *)data
 {
     [[self parcer] setData:data];
-    cityListLibrary = [[self parcer] parceCityList];
-    CityRequest *request = [cityListLibrary objectAtIndex:0];
+    self.cityListLibrary = [[self parcer] parceCityList];
+    CityRequest *request = [self.cityListLibrary objectAtIndex:0];
     [self getForecastWithRequest:request];
 }
 
@@ -138,7 +138,7 @@
 - (void) downloadManagerFinishedDownloadingCityListWithData:(NSData *)data
 {
         [[self parcer] setData:data];
-        cityListLibrary = [[self parcer] parceCityList];
+        self.cityListLibrary = [[self parcer] parceCityList];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cityList" object:self];
    
 }
@@ -147,11 +147,11 @@
 
 - (void) getForecastWithRequest:(CityRequest *)request
 {
-    cityRequest = request;
+    self.cityRequest = request;
     NSArray *devidedCoordinates = [request.coordinates componentsSeparatedByString:@" "];
-    lat = [devidedCoordinates objectAtIndex:1];
-    lon = [devidedCoordinates objectAtIndex:0];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&cnt=4&mode=json&APPID=7099e347b14e30461a20a65f60e11a89", lat, lon]];
+    self.lat = [devidedCoordinates objectAtIndex:1];
+    self.lon = [devidedCoordinates objectAtIndex:0];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@&cnt=4&mode=json&APPID=7099e347b14e30461a20a65f60e11a89", self.lat, self.lon]];
     DownloadManager *downloadManager = [[DownloadManager alloc] initWithURL:url AndTask:@"dayForecast"];
     [downloadManager downloadData:self];
     
@@ -167,7 +167,7 @@
     [[self dayForecast] setCoordinates:[[self cityRequest] coordinates]];
     
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%@&lon=%@&cnt=4&mode=json&APPID=7099e347b14e30461a20a65f60e11a89", lat, lon]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%@&lon=%@&cnt=4&mode=json&APPID=7099e347b14e30461a20a65f60e11a89", self.lat, self.lon]];
     DownloadManager *downloadManager = [[DownloadManager alloc] initWithURL:url AndTask:@"threeDayForecast"];
     [downloadManager downloadData:self];
 }
@@ -184,7 +184,7 @@
 
 - (void) updateCurrentForecast
 {
-    [self getForecastWithRequest:cityRequest];
+    [self getForecastWithRequest:self.cityRequest];
 }
 
 

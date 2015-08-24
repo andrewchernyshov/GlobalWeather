@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB3D93AA1B8B92C70006BC9C /* TransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3D93A91B8B92C70006BC9C /* TransitioningDelegate.m */; };
+		EB3D93AE1B8B93200006BC9C /* PresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3D93AD1B8B93200006BC9C /* PresentationController.m */; };
+		EB3D93B11B8B937B0006BC9C /* AnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = EB3D93B01B8B937B0006BC9C /* AnimatedTransitioning.m */; };
 		EB51E0361B5842CB00B8204B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51E0351B5842CB00B8204B /* Reachability.m */; };
 		EB51E0381B58433800B8204B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB51E0371B58433800B8204B /* SystemConfiguration.framework */; };
 		EB5E09461B56D2AD008B6CA9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5E09451B56D2AD008B6CA9 /* CoreLocation.framework */; };
@@ -38,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB3D93A81B8B92C70006BC9C /* TransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitioningDelegate.h; sourceTree = "<group>"; };
+		EB3D93A91B8B92C70006BC9C /* TransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitioningDelegate.m; sourceTree = "<group>"; };
+		EB3D93AC1B8B93200006BC9C /* PresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentationController.h; sourceTree = "<group>"; };
+		EB3D93AD1B8B93200006BC9C /* PresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentationController.m; sourceTree = "<group>"; };
+		EB3D93AF1B8B937B0006BC9C /* AnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedTransitioning.h; sourceTree = "<group>"; };
+		EB3D93B01B8B937B0006BC9C /* AnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedTransitioning.m; sourceTree = "<group>"; };
 		EB51E0341B5842CB00B8204B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		EB51E0351B5842CB00B8204B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		EB51E0371B58433800B8204B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -92,6 +101,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB3D93AB1B8B92CD0006BC9C /* Slide Menue */ = {
+			isa = PBXGroup;
+			children = (
+				EB3D93A81B8B92C70006BC9C /* TransitioningDelegate.h */,
+				EB3D93A91B8B92C70006BC9C /* TransitioningDelegate.m */,
+				EB3D93AF1B8B937B0006BC9C /* AnimatedTransitioning.h */,
+				EB3D93B01B8B937B0006BC9C /* AnimatedTransitioning.m */,
+				EB3D93AC1B8B93200006BC9C /* PresentationController.h */,
+				EB3D93AD1B8B93200006BC9C /* PresentationController.m */,
+			);
+			name = "Slide Menue";
+			sourceTree = "<group>";
+		};
 		EB805BDC1B50239A0006411C = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +204,7 @@
 				EB805C261B5123870006411C /* ForecastRequest.m */,
 				EB6986901B52A45E008741B8 /* ForecastObject.h */,
 				EB6986911B52A45E008741B8 /* ForecastObject.m */,
+				EB3D93AB1B8B92CD0006BC9C /* Slide Menue */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -287,16 +310,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB805C271B5123870006411C /* ForecastRequest.m in Sources */,
+				EB3D93AE1B8B93200006BC9C /* PresentationController.m in Sources */,
 				EB805C1E1B5032E40006411C /* CityRequest.m in Sources */,
 				EB805C1A1B5029A80006411C /* AppCore.m in Sources */,
 				EB805BEE1B50239A0006411C /* AppDelegate.m in Sources */,
 				EB805BF11B50239A0006411C /* GlobalWeather.xcdatamodeld in Sources */,
 				EB805BEB1B50239A0006411C /* main.m in Sources */,
+				EB3D93B11B8B937B0006BC9C /* AnimatedTransitioning.m in Sources */,
 				EB6986921B52A45E008741B8 /* ForecastObject.m in Sources */,
 				EB805C161B5024140006411C /* SBViewController.m in Sources */,
 				EB805C131B5024060006411C /* DisplayViewController.m in Sources */,
 				EB805C241B50427E0006411C /* Parcer.m in Sources */,
 				EB51E0361B5842CB00B8204B /* Reachability.m in Sources */,
+				EB3D93AA1B8B92C70006BC9C /* TransitioningDelegate.m in Sources */,
 				EB805C211B50354F0006411C /* DownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

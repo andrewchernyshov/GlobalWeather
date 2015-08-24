@@ -7,7 +7,7 @@
 //
 
 #import "DisplayViewController.h"
-
+#import "TransitioningDelegate.h"
 @interface DisplayViewController () <AppCoreDelegate>
 
 @end
@@ -46,6 +46,9 @@
 
 - (void) forecastReceived: (NSNotification *) notification
 {
+    NSLog(@"Day forecast array %@", [[AppCore sharedInstance] dayForecast]);
+    NSLog(@"Three days forecast array %@", [[AppCore sharedInstance] dayForecast]);
+    
     [cityNameLabel setText:[[[AppCore sharedInstance] dayForecast] cityName]];
     [cityNameLabel setEnabled:YES];
     [regionLabel setText:[[[AppCore sharedInstance] dayForecast] region]];
@@ -102,7 +105,15 @@
 - (IBAction)addCity:(id)sender
 {
     SBViewController *sbvc = [self.storyboard instantiateViewControllerWithIdentifier:@"SBViewController"];
+    sbvc.delegate = self;
+    self.transitioningDelegate = [[TransitioningDelegate alloc] init];
+    [sbvc setTransitioningDelegate:self.transitioningDelegate];
+    
+    //[self setModalPresentationStyle:UIModalPresentationCustom];
+    [sbvc setModalPresentationStyle:UIModalPresentationCustom];
+    
     [self presentViewController:sbvc animated:YES completion:nil];
+
     [dvcActivityIndicator startAnimating];
     
 }
@@ -136,6 +147,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) dismissSBViewController
+{
+    [self dismissSBViewController];
 }
 
 /*

@@ -74,8 +74,10 @@
 {
     self.userCityChoiseForForecast = [[[AppCore sharedInstance] fetchCityList] objectAtIndex:indexPath.row];
     [[AppCore sharedInstance] getForecastWithRequest:self.userCityChoiseForForecast];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityList" object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityList" object:nil];
+    
+    
 }
 
 

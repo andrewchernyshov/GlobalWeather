@@ -10,6 +10,15 @@
 #import "AppCore.h"
 #import "CityRequest.h"
 
+@protocol SBViewControllerDelegate <NSObject>
+
+- (void) dismissSBViewController;
+
+@end
+
+
+
+
 @interface SBViewController : UIViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UISearchBar *mySearchBar;
@@ -17,5 +26,6 @@
     IBOutlet UIActivityIndicatorView *sbvcActivityIndicator;
 }
 
+@property (nonatomic, weak) id <SBViewControllerDelegate> delegate;
 
 @end
